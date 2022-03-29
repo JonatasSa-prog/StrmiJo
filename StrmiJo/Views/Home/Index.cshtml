@@ -1,0 +1,12 @@
+﻿
+@model StrmiJo.Model.MostPopularData
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @foreach (var item in Model.Items) {
+        <p>@item.Title</p>
+    }
+</div>
