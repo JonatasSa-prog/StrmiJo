@@ -1,29 +1,20 @@
 ﻿using StrmiJo.Model;
 using Newtonsoft.Json;
-using System;
-using Refit;
-using StrmiJo.Interfaces;
-using System.Threading.Tasks;
 using System.Net.Http;
+using StrmiJo.Interfaces;
+using StrmiJo.Data;
 
 namespace StrmiJo.Repository {
-    public class MostPopularDataRepository {
-       
-        public MostPopularData GetMostPopularData() {
-            string strUrl = "https://imdb-api.com/pt-br/API/MostPopularMovies/k_1hpiy85y";
+    public class MostPopularDataRepository : IMostoPopularDataRepository {
 
-            HttpClient client = new HttpClient();
+        private readonly DataContext _context;
 
-            var response = client.GetAsync(strUrl).Result;
+        public MostPopularDataRepository() {
+            _context = new DataContext();
+        }
 
-            MostPopularData movies = null;
-
-            if (response.IsSuccessStatusCode) {
-                var result = response.Content.ReadAsStringAsync().Result;
-
-                movies = JsonConvert.DeserializeObject<MostPopularData>(result);
-            }
-            return movies;
+        public MostPopularData GetAll() {
+            return _context.MostPopularData;
         }
 
     }

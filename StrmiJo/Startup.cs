@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StrmiJo.Data;
 using StrmiJo.Services;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,8 @@ namespace StrmiJo {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllersWithViews();
-
+            //services.AddDbContext<DataContext>();
+            services.AddScoped<MostPopularDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,48 +5,109 @@
 }
 
 <style>
-    img {
-        max-width: 100%;
-        max-height: 392px;
-        min-height: 392px;
+   .movie-list-container{
+       padding: 20px;
+   }
+
+    .movie-list-item-img {
+        width: 400px;
+        height: 300px;
         object-fit: cover;
-    }
-    
-    h6 {
-        text-align: center;
+        transition: all 1s ease-in-out;
     }
 
-    .card-header.py-3 {
-        height: 71px;
+   .movie-list{
+       display:grid;
+       height: 300px;
+       width: 200px;      
+       align-content: center;
+   }
+
+   .movie-list-item{
+       margin-right:30px;
+       position:;
+       
+   }
+
+   .movie-list-item:hover .movie-list-item-img{
+       transform: scale(1.2);
+       margin: 0 30px;
+       opacity: 0.5;
+   }
+
+    .movie-list-item:hover .movie-list-title,
+    .movie-list-item:hover .movie-list-desc,
+    .movie-list-item:hover .movie-list-item-button{
+        opacity: 1;
     }
 
-    .card-body {
-        width: 100%;
-        height: 100%;
-        align-self: center;
-        padding: 0px !important;
+    .movie-list-item-title {
+        background-color: #333;
+        padding: 0 10px;
+        font-size: 32px;
+        font-weight: bold;
+        position: absolute;
+        top: 10%;
+        left: 50px;
+        opacity: 0;
+        transition: 1s all ease-in-out;
     }
+
+    .movie-list-item-desc {
+        background-color: #333;
+        padding: 0 10px;
+        font-size: 14px;
+        position: absolute;
+        top: 30%;
+        left: 50px;
+        width: 230px;
+        opacity: 0;
+        transition: 1s all ease-in-out;
+    }
+
+    .movie-list-item-button {
+        padding: 10px;
+        background-color: green;
+        color: white;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        bottom: 20px;
+        left: 50px;
+        opacity: 0;
+        transition: 1s all ease-in-out;
+    }
+
 </style>
 
-<div class="container-fluid">
-    <div class="row">
-        @foreach (var item in Model.Items)
-        {
+<body>
 
-            <div class="col-4">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">@item.FullTitle</h6>
-                    </div>
-                    <div id="img" class="card-body" style="background-image: url('@item.Image');">
-                    </div>
+    <div class="movie-list-container">
+        <h1 class="movie-list-title"> Most Popular Movies</h1>
+        <div class="movie-list-wrapper">
+            <div class="movie-list">
+                @foreach (var item in Model.Items) {
+                <div class="movie-list-item">
+                    <img class="movie-list-item-img" src="@item.Image" alt="">
+                    <span class="movie-list-item-title">@item.Title</span>
                 </div>
+                }
             </div>
-
-        }
+        </div>
     </div>
-</div>
 
-<script>
+    @*<div class="movie-list-container">
+        <div class="movie-list-wrapper">
+            <div class="row">
+                @foreach (var item in Model.Items) {
+                    <div class="col">
+                        <img class="movie-list-item-img" src="@item.Image" alt="">
+                    </div>
+                }
+            </div>
+        </div>
+        </div>*@
 
-</script>
+</body>

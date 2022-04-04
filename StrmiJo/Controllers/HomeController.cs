@@ -5,9 +5,13 @@ using StrmiJo.Services;
 namespace StrmiJo.Controllers {
     public class HomeController : Controller {
 
-        private readonly MostPopularDataService mostPopularDataService = new MostPopularDataService();
+        private readonly MostPopularDataService _mostPopularDataService;
+
+        public HomeController(MostPopularDataService mostPopularDataService) {
+            _mostPopularDataService = mostPopularDataService;
+        }
         public IActionResult Index() {           
-             return View(mostPopularDataService.GetAll());
+             return View(_mostPopularDataService.GetAll());
         }
 
         public IActionResult Privacy() {

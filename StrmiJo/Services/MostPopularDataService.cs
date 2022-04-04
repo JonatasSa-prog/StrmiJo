@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace StrmiJo.Services {
     public class MostPopularDataService {
-        private readonly MostPopularDataRepository _context = new MostPopularDataRepository();
+        private readonly MostPopularDataRepository _mostPopularDataRepository;
+
+        public MostPopularDataService() {
+            _mostPopularDataRepository = new MostPopularDataRepository();
+        }
         public MostPopularData GetAll() {
-            return _context.GetMostPopularData();
+            return _mostPopularDataRepository.GetAll();
         }
     }
 }
