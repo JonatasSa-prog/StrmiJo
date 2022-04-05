@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using StrmiJo.Interfaces;
 using StrmiJo.Data;
+using System.Linq;
 
 namespace StrmiJo.Repository {
     public class MostPopularDataRepository : IMostoPopularDataRepository {
@@ -12,7 +13,6 @@ namespace StrmiJo.Repository {
         public MostPopularDataRepository() {
             _context = new DataContext();
         }
-
         public MostPopularData GetAll() {
             return _context.MostPopularData;
         }

@@ -1,9 +1,6 @@
 ﻿using StrmiJo.Model;
 using StrmiJo.Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace StrmiJo.Services {
     public class MostPopularDataService {
@@ -14,6 +11,11 @@ namespace StrmiJo.Services {
         }
         public MostPopularData GetAll() {
             return _mostPopularDataRepository.GetAll();
+        }
+
+        public void GetTopNine()
+        {
+            this.GetAll().Items = this.GetAll().Items.Take(9).ToList();
         }
     }
 }
