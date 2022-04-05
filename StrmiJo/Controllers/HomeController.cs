@@ -8,7 +8,7 @@ namespace StrmiJo.Controllers
     {
 
         private readonly static MostPopularDataService _mostPopularDataService = new MostPopularDataService();
-        private readonly TitleDataService _TitleDataService =  new TitleDataService();
+        
 
         public HomeController()
         {
@@ -24,25 +24,6 @@ namespace StrmiJo.Controllers
             return View();
         }
 
-        public IActionResult GetMovieId(string id)
-        {
-
-            string messager = string.Empty;
-            bool is_action = false;
-            string url = string.Empty;
-
-            try
-            {
-                var movie = _TitleDataService.GetTitleData(id);
-                if (movie != null)
-                    messager = "Filme Encontrado.";
-            }
-            catch
-            {
-                messager = "Filme não Encontrado.";
-            }
-
-            return Json(new { is_action, messager, url = string.IsNullOrEmpty(url) ? Url.Action("Index", "Dashboard") : url });
-        }
+        
     }
 }
