@@ -5,35 +5,22 @@ using StrmiJo.Model;
 using StrmiJo.Services;
 
 
-namespace StrmiJo.Controllers
-{
-    public class MovieDetail : Controller
-    {
+namespace StrmiJo.Controllers {
+    public class MovieDetail : Controller {
         private readonly TitleDataService _TitleDataService = new TitleDataService();
 
-        public IActionResult Index()
-        {
-            var movie = JsonConvert.DeserializeObject<TitleData>(HttpContext.Session.GetString("SessionMovie"));
+        public IActionResult Index(string id) {
+            var movie = GetMovieId2(id);
             return View(movie);
         }
 
-        public IActionResult GetMovieId(string id) {
+        public TitleData GetMovieId2(string id) {
 
-            string messager = string.Empty;
-            bool is_action = false;
-            string url = string.Empty;
+            var movie = _TitleDataService.GetTitleData(id);
+            if (movie != null)
+                return movie;
 
-            try {
-                var movie = _TitleDataService.GetTitleData(id);
-                if (!string.IsNullOrWhiteSpace(movie))
-                    HttpContext.Session.SetString("SessionMovie", movie);
-
-                is_action = true;
-            } catch {
-                messager = "Filme não Encontrado.";
-            }
-
-            return Json(new { is_action, messager, url = string.IsNullOrEmpty(url) ? Url.Action("Index", "MovieDetail") : url });
+            return null;
         }
     }
 }

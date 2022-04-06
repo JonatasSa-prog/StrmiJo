@@ -10,10 +10,9 @@ namespace StrmiJo.Services
 {
     public class TitleDataService
     {
-        public string GetTitleData(string id)
-        {
+ 
+        public TitleData GetTitleData(string id) {
             string strUrl = "https://imdb-api.com/pt-BR/API/Title/k_1hpiy85y/" + id;
-            string result = string.Empty;
 
             HttpClient client = new HttpClient();
 
@@ -21,12 +20,12 @@ namespace StrmiJo.Services
 
             TitleData movie = null;
 
-            if (response.IsSuccessStatusCode)
-            {
-               result = response.Content.ReadAsStringAsync().Result;
+            if (response.IsSuccessStatusCode) {
+                var result = response.Content.ReadAsStringAsync().Result;
+                movie = JsonConvert.DeserializeObject<TitleData>(result);
             }
 
-            return result;
+            return movie;
         }
     }
 }

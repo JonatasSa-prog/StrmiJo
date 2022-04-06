@@ -75,21 +75,6 @@
 
 <script>
     function MovieDatail(id) {
-         $.ajax({
-                    type: 'POST',
-                    data: {
-                        'id': id,
-                    },
-                    url: '@Url.Action("GetMovieId", "MovieDetail")',
-             success: function (result) {
-                 debugger;
-                        location.href = '@Url.Action("Index", "MovieDetail")';
-                    },
-                     error: function (error) {
-                         lert(result.messager);
-                         location.href = result.url;
-                    },
-                    datatype: 'json'
-                });
+        location.href = '@Url.Action("Index", "MovieDetail")?id=' + id;
     }
 </script>

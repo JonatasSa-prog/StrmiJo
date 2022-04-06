@@ -3,6 +3,11 @@
     ViewData["Title"] = "Movie Detail";
 }
 
-<h1>@Model.FullTitle</h1>
-<br>
-<h2>@Model.PlotLocal</h2>
+@if (!string.IsNullOrWhiteSpace(Model.Title)) {
+    <h1>@Model.FullTitle</h1>
+    <br>
+    <h2>@Model.PlotLocal</h2>
+} else {
+
+    <h1>Filme não encontrado.</h1>
+}
